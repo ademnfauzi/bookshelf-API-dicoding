@@ -24,7 +24,7 @@ const tambahBukuHandler = (h, request) => {
     return response;
   }
   // cek apakah readPage lebih besar dari pageCount
-  if (readPage > pageCount) {
+  if (pageCount < readPage) {
     const response = h.response({
       status: 'fail',
       message: 'Gagal menambahkan buku. readPage tidak boleh lebih besar dari pageCount',
@@ -58,7 +58,7 @@ const tambahBukuHandler = (h, request) => {
   const sukses = books.filter((book) => book.id === id).length > 0;
 
   //   cek apakah berhasil ditambahkan
-  if (sukses === true) {
+  if (sukses) {
     const response = h.response({
       status: 'success',
       message: 'Buku berhasil ditambahkan',
@@ -84,18 +84,18 @@ const semuaBukuHandler = (request, h) => {
   const { name, reading, finished } = request.query;
 
   //   jika name bernilai true
-  if (name === true) {
+  if (name) {
     saringBuku = saringBuku.filter((book) => book.name.toLowerCase().includes(name.toLowerCase()));
   }
 
   //   jika reading bernilai true
-  if (reading === true) {
+  if (reading) {
     saringBuku = saringBuku.filter(
       (book) => book.reading === !!Number(reading),
     );
   }
   //   jika finished bernilai true
-  if (finished === true) {
+  if (finished) {
     saringBuku = saringBuku.filter(
       (book) => book.finished === !!Number(finished),
     );
@@ -120,7 +120,7 @@ const bukuBerdasarkanIdHandler = (h, request) => {
   const book = books.filter((n) => n.id === id)[0];
 
   //   jika nilai buku true
-  if (book === true) {
+  if (book) {
     const response = h.response({
       status: 'success',
       data: {
