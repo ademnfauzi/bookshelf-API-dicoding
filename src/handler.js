@@ -1,7 +1,7 @@
 const { nanoid } = require('nanoid');
 const books = require('./books');
 
-const tambahBukuHandler = (h, request) => {
+const tambahBukuHandler = (request, h) => {
   //   mengambil data dari body json
   const {
     name,
@@ -114,7 +114,7 @@ const semuaBukuHandler = (request, h) => {
   return response;
 };
 
-const bukuBerdasarkanIdHandler = (h, request) => {
+const bukuBerdasarkanIdHandler = (request, h) => {
   // mendapatkan id dari url
   const { id } = request.params;
   const book = books.filter((n) => n.id === id)[0];
@@ -137,7 +137,7 @@ const bukuBerdasarkanIdHandler = (h, request) => {
   return response;
 };
 
-const editBukuHandler = (h, request) => {
+const editBukuHandler = (request, h) => {
   const tanggal = new Date().toISOString();
   // mendapatkan id dari url
   const { id } = request.params;
@@ -203,7 +203,7 @@ const editBukuHandler = (h, request) => {
   return response;
 };
 
-const hapusBukuHandler = (h, request) => {
+const hapusBukuHandler = (request, h) => {
   //   mendapatkan id dari url
   const { id } = request.params;
   // mensamakan id dengan id yg ada pada file book
