@@ -225,7 +225,7 @@ const hapusBukuHandler = (request, h) => {
   const response = h
     .response({
       status: 'fail',
-      message: 'Buku gagal dihapus. Id buku tidak ditemukan',
+      message: 'Buku gagal dihapus. Id tidak ditemukan',
     })
     .code(404);
 
